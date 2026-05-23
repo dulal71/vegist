@@ -61,7 +61,8 @@ return(
 {/* user info,cart */}
 <div className="flex items-center gap-5">
 {/* mobile search bar */}
-<IoIosSearch
+<div className="md:hidden">
+  <IoIosSearch
   onClick={() => setOpenSearch(!openSearch)}
   className="text-2xl cursor-pointer"
 />
@@ -77,6 +78,7 @@ return(
   />
 </div>
 
+</div>
 <CiUser className="text-2xl hidden md:block" />
  <div className="flex items-center gap-4">
  
@@ -86,7 +88,7 @@ return(
  </div>
 
  {/* mobile button */}
- <div className="relative md:hidden">
+ <div className=" md:hidden">
   
   {/* MOBILE MENU */}
   <button
@@ -98,7 +100,7 @@ return(
 
  
   <div
-    className={`absolute left-0 right-0 top-17 w-full bg-white overflow-hidden z-50 `}>
+    className={`absolute left-0 right-0 top-17 w-90 bg-white overflow-hidden z-50 `}>
     <MobileMenu
       isMenuOpen={isMenuOpen}
       setIsMenuOpen={setIsMenuOpen}

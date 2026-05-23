@@ -9,7 +9,7 @@ import { IoClose } from 'react-icons/io5'
 const MobileSearch = ({ openSearch, setOpenSearch }) => {
   return (
     <div
-      className={`fixed top-24 left-0 w-full bg-white z-50 shadow transition-all duration-500 ${
+      className={` top-24 left-0 w-full bg-white z-50 shadow transition-all duration-500 ${
           openSearch
       ? "translate-y-0 opacity-100 pointer-events-auto"
       : "-translate-y-5 opacity-0 pointer-events-none"
