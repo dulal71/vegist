@@ -7,13 +7,18 @@ import { MdOutlineHeadset, MdOutlineMailOutline } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiUser } from "react-icons/ci";
-import { IoBagOutline } from "react-icons/io5";
+import { IoBagOutline, IoMenuSharp } from "react-icons/io5";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import MobileSearch from "./MobileSearch";
 import SearchbarWrapper from "./SearchbarWrapper";
+import { RxCross2 } from "react-icons/rx";
+import { AiOutlineMenu } from "react-icons/ai";
+
+import MobileMenu from "./MobileMenu";
 const Navbar = () => {
 const pathname = usePathname()
+const [isMenuOpen,setIsMenuOpen]=useState(false)
 const [openSearch , setOpenSearch]=useState(false)
   const navLinks=[
     {name : "Home", path:"/"},
@@ -23,7 +28,7 @@ const [openSearch , setOpenSearch]=useState(false)
    
   ]
     return (
-        <nav className="bg-[var(--bg-secondary)] relative">
+        <nav className="bg-[var(--bg-secondary)] relative z-50">
           {/* nav content */}
          <div className="container mx-auto flex items-center justify-between py-7 px-4 md:px-0">
             {/* logo */}
@@ -62,13 +67,9 @@ return(
 />
 
 <div
-  className={`absolute left-0 right-0 top-full w-full bg-white shadow-md overflow-hidden z-50
-  transition-all duration-500 ease-in-out
-  ${
-    openSearch
-      ? "h-20 opacity-100 translate-y-0"
-      : "h-0 opacity-0"
-  }`}
+  className={`absolute left-0 right-0 top-17 w-full bg-white  overflow-hidden z-50
+
+`}
 >
   <MobileSearch
     openSearch={openSearch}
@@ -76,18 +77,38 @@ return(
   />
 </div>
 
-<CiUser className="text-2xl" />
+<CiUser className="text-2xl hidden md:block" />
  <div className="flex items-center gap-4">
  
   <div className="relative">
 <IoBagOutline className="text-2xl" />
+ <span className="absolute px-1.5 rounded-full -top-3 -right-2 bg-[var(--primary-color)]">0</span>
+ </div>
 
-  <span className="absolute px-1.5 rounded-full -top-3 -right-2 bg-[var(--primary-color)]">0</span>
+ {/* mobile button */}
+ <div className="relative md:hidden">
+  
+  {/* MOBILE MENU */}
+  <button
+    onClick={() => setIsMenuOpen(!isMenuOpen)}
+    className="p-2 rounded text-2xl"
+  >
+    {isMenuOpen ? <RxCross2 /> : <AiOutlineMenu />}
+  </button>
+
  
+  <div
+    className={`absolute left-0 right-0 top-17 w-full bg-white overflow-hidden z-50 `}>
+    <MobileMenu
+      isMenuOpen={isMenuOpen}
+      setIsMenuOpen={setIsMenuOpen}
+      navLinks={navLinks}
+      pathname={pathname}
+    />
   </div>
 
-
- </div>
+</div>
+</div>
 </div>
 
  {/* call and email */}
