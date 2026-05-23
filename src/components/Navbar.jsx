@@ -3,7 +3,7 @@
 import { BsLeafFill } from "react-icons/bs";
 import { FaLeaf, FaShoppingBag } from "react-icons/fa";
 import { MdOutlineHeadset, MdOutlineMailOutline } from "react-icons/md";
-import Searchbar from "./Searchbar";
+
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiUser } from "react-icons/ci";
@@ -11,6 +11,7 @@ import { IoBagOutline } from "react-icons/io5";
 import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import MobileSearch from "./MobileSearch";
+import SearchbarWrapper from "./SearchbarWrapper";
 const Navbar = () => {
 const pathname = usePathname()
 const [openSearch , setOpenSearch]=useState(false)
@@ -23,6 +24,7 @@ const [openSearch , setOpenSearch]=useState(false)
   ]
     return (
         <nav className="bg-[var(--bg-secondary)] relative">
+          {/* nav content */}
          <div className="container mx-auto flex items-center justify-between py-7 px-4 md:px-0">
             {/* logo */}
            <div className="flex items-center gap-1">
@@ -31,8 +33,6 @@ const [openSearch , setOpenSearch]=useState(false)
           </div>
            <h2 className="font-bold text-3xl md:text-4xl">Vegist</h2>
             </div>
-
-
 
  {/* navlink  */}
  <div className="hidden md:flex items-center gap-10">
@@ -52,7 +52,10 @@ return(
           
  </div>
 
+
+{/* user info,cart */}
 <div className="flex items-center gap-5">
+{/* mobile search bar */}
 <IoIosSearch
   onClick={() => setOpenSearch(!openSearch)}
   className="text-2xl cursor-pointer"
@@ -87,10 +90,10 @@ return(
  </div>
 </div>
 
-
+ {/* call and email */}
  <div className="hidden lg:flex items-center gap-4">
             {/* call */}
-            <div className="flex items-center gap-3">
+ <div className="flex items-center gap-3">
 <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center transition-all duration-500 hover:rotate-[360deg] hover:bg-red-50">
   <MdOutlineHeadset className="text-red-800 text-2xl" />
 </div>
@@ -111,12 +114,11 @@ return(
 
             </div>
             </div>
-        
-           
-            {/* call and email */}
-             </div>
+   </div>
+   
+    {/* desktop search bar     */}
         <div className="hidden  md:block  absolute -bottom-8 left-1/2 -translate-x-1/2">
-  <Searchbar />
+  <SearchbarWrapper></SearchbarWrapper>
 </div>   
         </nav>
     );
